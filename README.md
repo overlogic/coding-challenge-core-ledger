@@ -2,6 +2,8 @@
 
 Welcome to the project repository! This guide will help you get started and understand the different parts of the project.
 
+> **Hint**: If you encounter timeouts during `pnpm run dev`, `pnpm run deploy` or `pnpm run test`, it might be due to the database needing to spin up as it is currently in idle mode.
+
 ## Technologies Used
 
 - **SST**: We use [SST](https://sst.dev/) for easy serverless deployments and live lambda development.
@@ -42,11 +44,9 @@ If you update the database models, generate the migration files with:
 pnpm run generate:migrations
 ```
 
-> **Hint**: If you encounter timeouts during `pnpm run dev`, it might be due to the database needing to spin up as it is currently in idle mode.
-
 ## Running Tests
 
-To run tests, ensure your environment is deployed or running with `pnpm run dev`. In another terminal window, run:
+To run tests, ensure your environment is deployed `pnpm run deploy` or running with `pnpm run dev`. In another terminal window, run:
 
 ```sh
 cd packages/core && pnpm run test
