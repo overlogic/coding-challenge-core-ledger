@@ -29,9 +29,9 @@ You will need an active AWS account to run this code. Follow these steps to set 
 Then, follow these commands:
 
 ```sh
-yarn
-yarn build # Ensures all types are working
-yarn dev # will start deploy the ressources and start the live lambda development
+pnpm install
+pnpm run build # Ensures all types are working
+pnpm run dev # will start deploy the ressources and start the live lambda development
 ```
 
 You can optionally run with `aws-vault`:
@@ -39,17 +39,17 @@ You can optionally run with `aws-vault`:
 If you update the database models, generate the migration files with:
 
 ```sh
-yarn generate:migrations
+pnpm run generate:migrations
 ```
 
-> **Hint**: If you encounter timeouts during `yarn dev`, it might be due to the database needing to spin up as it is currently in idle mode.
+> **Hint**: If you encounter timeouts during `pnpm run dev`, it might be due to the database needing to spin up as it is currently in idle mode.
 
 ## Running Tests
 
-To run tests, ensure your environment is deployed or running with `yarn dev`. In another terminal window, run:
+To run tests, ensure your environment is deployed or running with `pnpm run dev`. In another terminal window, run:
 
 ```sh
-cd packages/core && yarn test
+cd packages/core && pnpm run test
 ```
 
 > **Hint**: The database might need some time to start. If you get timeouts, try again after a few minutes.
@@ -59,5 +59,5 @@ cd packages/core && yarn test
 Remember to remove resources after you are done to avoid unnecessary AWS billing costs, especially for the database.
 
 ```sh
-yarn run remove
+pnpm run remove
 ```

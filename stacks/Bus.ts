@@ -16,5 +16,9 @@ export function Bus({ stack }: StackContext) {
       "packages/functions/src/modules/notification/user-created.event-handler.handler",
   });
 
+  stack.addOutputs({
+    busName: bus.eventBusName,
+  });
+
   return bus;
 }
