@@ -4,18 +4,26 @@ import { userService } from "@coding-challenge-core-ledger/core/modules/user/ser
 import { ApiHandler, usePathParam, useJsonBody } from "sst/node/api";
 import { z } from "zod";
 
-export const getBalance = ApiHandler(async (_evt) => {
-  const userId = usePathParam("id");
+const userHandler = (getHandler: (userId: string) => {}) => {
+  return ApiHandler(async (_evt) => {
+    if (_evt.requestContext.http.method === "POST" && !_evt.body) return { statusCode: 400 };
 
-  if (!userId)
-    return {
-      statusCode: 400,
-      body: JSON.stringify({ errors: ["User id is required"] }),
-    };
+    const userId = usePathParam("id");
 
-  const user = await userService.get(userId);
-  if (!user) return { statusCode: 404 };
+    if (!userId)
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ errors: ["User id is required"] }),
+      };
 
+    const user = await userService.get(userId);
+    if (!user) return { statusCode: 404 };
+
+    return getHandler(userId);
+  });
+};
+
+export const getBalance = userHandler(async (userId) => {
   const result = await accountService.getBalance(userId);
 
   if (!result.success) return { statusCode: 400 };
@@ -26,18 +34,7 @@ export const getBalance = ApiHandler(async (_evt) => {
   };
 });
 
-export const getTransactions = ApiHandler(async (_evt) => {
-  const userId = usePathParam("id");
-
-  if (!userId)
-    return {
-      statusCode: 400,
-      body: JSON.stringify({ errors: ["User id is required"] }),
-    };
-
-  const user = await userService.get(userId);
-  if (!user) return { statusCode: 404 };
-
+export const getTransactions = userHandler(async (userId) => {
   const result = await transactionService.getTransactionsByUserId(userId);
 
   if (!result.success) return { statusCode: 400 };
@@ -48,17 +45,7 @@ export const getTransactions = ApiHandler(async (_evt) => {
   };
 });
 
-export const deposit = ApiHandler(async (_evt) => {
-  if (!_evt.body) return { statusCode: 400 };
-
-  const userId = usePathParam("id");
-
-  if (!userId)
-    return {
-      statusCode: 400,
-      body: JSON.stringify({ errors: ["User id is required"] }),
-    };
-
+export const deposit = userHandler(async (userId) => {
   const paramsSchema = z.object({
     amount: z.number().int().gt(0),
   });
@@ -87,17 +74,7 @@ export const deposit = ApiHandler(async (_evt) => {
   };
 });
 
-export const withdraw = ApiHandler(async (_evt) => {
-  if (!_evt.body) return { statusCode: 400 };
-
-  const userId = usePathParam("id");
-
-  if (!userId)
-    return {
-      statusCode: 400,
-      body: JSON.stringify({ errors: ["User id is required"] }),
-    };
-
+export const withdraw = userHandler(async (userId) => {
   const paramsSchema = z.object({
     amount: z.number().int().gt(0),
   });
