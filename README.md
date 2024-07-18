@@ -61,3 +61,17 @@ Remember to remove resources after you are done to avoid unnecessary AWS billing
 ```sh
 pnpm run remove
 ```
+
+# Results
+
+## Assumptions
+
+- All transactions are in the smallest unit of currency (e.g., cents), so we don't have floating point operations.
+- All transactions are made in EUR at the API level but can potentially be extended to other currencies, as the data layer supports it.
+- There is a default (company) account which is deposited with fees.
+
+## What could be done in the future
+
+- Add more tests, obviously.
+- Add dependency injection for better testability.
+- Add account balance versioning/logging to track it with each transaction.
