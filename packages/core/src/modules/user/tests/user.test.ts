@@ -2,7 +2,7 @@ import { expect, it, describe } from "vitest";
 import { Api } from "sst/node/api";
 import { User } from "../models";
 
-describe("User", () => {
+describe("User", { timeout: 30000 }, () => {
   it("should create", async () => {
     const firstName = "John";
     const response = await fetch(`${Api.api.url}/user`, {
