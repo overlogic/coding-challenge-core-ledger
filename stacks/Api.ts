@@ -16,6 +16,7 @@ export function Api({ stack }: StackContext) {
     routes: {
       "GET /user/{id}": "packages/functions/src/modules/user.api-handler.get",
       "POST /user": "packages/functions/src/modules/user.api-handler.create",
+      "GET /user/{id}/balance": "packages/functions/src/modules/account.api-handler.getBalance",
     },
   });
 
