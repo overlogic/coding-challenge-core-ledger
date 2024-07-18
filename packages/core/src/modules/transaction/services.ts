@@ -44,6 +44,21 @@ export class TransactionService {
       })),
     };
   }
+
+  async getRealtimeReport(): Promise<ErrResponse | RealtimeReportResponse> {
+    return {
+      success: true,
+      report: await this.repo.getRealtimeReport(),
+    };
+  }
+
+  async getBankBalance(toDate: Date): Promise<ErrResponse | BankReportResponse> {
+    return {
+      success: true,
+      report: await this.repo.getBankBalance(toDate),
+    };
+  }
 }
 
+// TODO: Replace with a DI container in the future
 export const transactionService = new TransactionService(new TransactionRepository());

@@ -20,6 +20,8 @@ export function Api({ stack }: StackContext) {
       "GET /user/{id}/transactions": "packages/functions/src/modules/account.api-handler.getTransactions",
       "POST /user/{id}/deposit": "packages/functions/src/modules/account.api-handler.deposit",
       "POST /user/{id}/withdraw": "packages/functions/src/modules/account.api-handler.withdraw",
+      "GET /report/realtime": "packages/functions/src/modules/report.api-handler.realtime",
+      "GET /report/bankbalance/{toDate}": "packages/functions/src/modules/report.api-handler.bankbalance",
     },
   });
 
