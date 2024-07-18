@@ -1,1 +1,1 @@
-export * from "./../modules/user/models/index";
+export * from "./../modules/user/models";

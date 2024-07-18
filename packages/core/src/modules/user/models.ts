@@ -1,7 +1,6 @@
-import { varchar, timestamp } from "drizzle-orm/pg-core";
-import { userSchema } from "./schema";
+import { varchar, timestamp, pgTable } from "drizzle-orm/pg-core";
 
-export const users = userSchema.table("users", {
+export const users = pgTable("users", {
   id: varchar("id").primaryKey(),
   firstName: varchar("firstName"),
   lastName: varchar("lastName"),

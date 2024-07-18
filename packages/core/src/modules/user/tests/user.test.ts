@@ -17,8 +17,6 @@ describe("User", { timeout: 30000 }, () => {
     const user = (await response.json()) as User;
     expect(user.firstName).toBe(firstName);
 
-    console.log(user.id);
-
     const getUserResponse = await fetch(`${Api.api.url}/user/${user.id}`, {
       method: "GET",
     });

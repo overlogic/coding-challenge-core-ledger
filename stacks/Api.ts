@@ -14,10 +14,8 @@ export function Api({ stack }: StackContext) {
       },
     },
     routes: {
-      "GET /user/{id}":
-        "packages/functions/src/modules/user/user.api-handler.get",
-      "POST /user":
-        "packages/functions/src/modules/user/user.api-handler.create",
+      "GET /user/{id}": "packages/functions/src/modules/user.api-handler.get",
+      "POST /user": "packages/functions/src/modules/user.api-handler.create",
     },
   });
 

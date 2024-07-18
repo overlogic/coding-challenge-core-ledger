@@ -8,6 +8,13 @@
       "when": 1718624125035,
       "tag": "0000_sour_mercury",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1721308629690,
+      "tag": "0001_move_user_table_to_public_schema",
+      "breakpoints": true
     }
   ]
 }
