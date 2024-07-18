@@ -17,6 +17,9 @@ export function Api({ stack }: StackContext) {
       "GET /user/{id}": "packages/functions/src/modules/user.api-handler.get",
       "POST /user": "packages/functions/src/modules/user.api-handler.create",
       "GET /user/{id}/balance": "packages/functions/src/modules/account.api-handler.getBalance",
+      "GET /user/{id}/transactions": "packages/functions/src/modules/account.api-handler.getTransactions",
+      "POST /user/{id}/deposit": "packages/functions/src/modules/account.api-handler.deposit",
+      "POST /user/{id}/withdraw": "packages/functions/src/modules/account.api-handler.withdraw",
     },
   });
 
