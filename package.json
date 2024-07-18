@@ -3,6 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=18.18.2"
+  },
+  "engine-strict": true,
   "scripts": {
     "dev": "sst dev",
     "build": "sst build",
